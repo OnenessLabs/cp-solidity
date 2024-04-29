@@ -22,6 +22,10 @@ contract SBTERC721 is ERC721Upgradeable {
         _safeMint(account, counter.current());
     }
 
+     function _beforeTokenTransfer(address from, address to, uint256) pure  internal {
+        require(from == address(0) || to == address(0), "It cannot be transferred.");
+    }
+
 
     modifier onlyMinter() {
         require(_minter == _msgSender() || _minter == tx.origin, "Caller is not the owner");

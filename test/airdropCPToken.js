@@ -56,4 +56,10 @@ describe("airdrop CPToken", function () {
   
  
   })
+
+
+  it("non-transfer", async function(){
+    await sbtProxy.mint(owner.address)
+    expect(await sbtProxy.transferFrom(owner.address,alice.address,BigNumber.from("1"))).to.be.revertedWith("It cannot be transferred.")
+  })
 });
